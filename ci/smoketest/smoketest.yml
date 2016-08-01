@@ -1,0 +1,19 @@
+---
+platform: linux
+
+image_resource:
+  type: docker-image
+  source:
+    repository: getourneau/alpine-cfcli-golang
+    tag: latest
+
+inputs:
+  - name: concourse-cloudfoundry-tasks
+  - name: smoke-test
+    path: gopath/src/github.com/cloudfoundry/cf-smoke-tests/
+  - name: env-info
+    path: env/
+
+run:
+  path: concourse-cloudfoundry-tasks/ci/smoketest/smoketest
+
