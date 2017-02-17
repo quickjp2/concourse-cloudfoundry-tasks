@@ -5,20 +5,15 @@ export GOPATH=$PWD/gopath
 export PATH=$GOPATH/bin:$PATH
 cd $GOPATH/src/github.com/cloudfoundry/cf-smoke-tests/
 
-
 if [ ! -f "$ROOT_DIR/env/metadata" ]; then
   echo "Env. file do not exist"
   exit 1
 fi
 
-
-
 file_data=$(cat $ROOT_DIR/env/metadata)
 
 #compiling smoke-test
-
 bin/compile
-
 
 cat<<EOF >config.json
 {
@@ -41,6 +36,5 @@ cat<<EOF >config.json
 EOF
 
 root=$(pwd)
-set -x 
+set -x
 CONFIG=$root/config.json bin/test -nodes=2 -v
-
